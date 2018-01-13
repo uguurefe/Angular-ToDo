@@ -1,1 +1,4 @@
-# Angular-ToDo
+ToDo Properties:
+-Add
+-Delete
+-Search
