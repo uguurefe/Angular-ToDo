@@ -1,4 +1,4 @@
-ToDo Properties:
--Add
--Delete
--Search
+###ToDo Properties:
+*Add
+*Delete
+*Search
