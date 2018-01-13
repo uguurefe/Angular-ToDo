@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="toDo">
+<head>
+	<meta charset="UTF-8">
+	<title>ToDoList</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="controller.js"></script>
+	<style>
+		.done{
+			text-decoration: line-through;
+			font-style: italic;
+			color: #ccc;
+		}
+	</style>
+</head>
+<body ng-controller="toDoCtrl">	
+	<input type="text" ng-model="searchBox" placeholder="Search">
+	<div>
+		<input type="text" ng-model="newTask">
+		<button ng-click="addTask(newTask)">Add</button>
+		<button ng-click="remove()">Remove</button>
+	</div>
+	<div ng-repeat="task in tasks| filter:searchBox">
+		<input type="checkbox" ng-model="task.done">
+		<span ng-class="{done: task.done}">{{task.task}}</span>
+	</div>
+	<!--<ng-pluralize count="remainingCount" when="'one': 'task left', 'other': 'tasks left'"></ng-pluralize> -->
+</body>
+</html>
