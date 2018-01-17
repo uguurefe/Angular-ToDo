@@ -13,16 +13,22 @@
 		}
 	</style>
 </head>
-<body ng-controller="toDoCtrl">	
-	<input type="text" ng-model="searchBox" placeholder="Search">
+<body ng-init="bind()" ng-controller="toDoCtrl">	
+	<input type="text" ng-model="searchBox.task" placeholder="Search">
 	<div>
 		<input type="text" ng-model="newTask">
-		<button ng-click="addTask(newTask)">Add</button>
-		<button ng-click="remove()">Remove</button>
+		<button ng-click="addTask(newTask)">Add</button> ({{ getJobCount() }}) tane daha yapılacak iş var
+
+		<br>
+		<button  ng-disabled=" getJobCount() == 0 " ng-click="chooseAll()">Hepsini Seç</button>
+		<button ng-disabled=" getJobCount() == tasks.length " ng-click="chooseNone()">Hepsini Sıfırla</button>
 	</div>
-	<div ng-repeat="task in tasks| filter:searchBox">
-		<input type="checkbox" ng-model="task.done">
-		<span ng-class="{done: task.done}">{{task.task}}</span>
+	<div ng-repeat="task in tasks |filter:searchBox ">
+		
+		<a href="javascript:;" ng-click="toggle(task)">
+			<span ng-class="get_task_class(task)">{{task.task}}</span>
+		</a>
+		<a href="javascript:;" ng-click="deleteElement($index)">X</a>
 	</div>
 	<!--<ng-pluralize count="remainingCount" when="'one': 'task left', 'other': 'tasks left'"></ng-pluralize> -->
 </body>
